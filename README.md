@@ -1,8 +1,8 @@
-# WHMCS Sample Third Party Payment Gateway Module #
+# WHMCS Payme Gateway Module #
 
 ## Summary ##
 
-Payment Gateway modules allow you to integrate payment solutions with the WHMCS
+Payme Gateway modules allow you to integrate payment solutions with the WHMCS
 platform.
 
 There are two types of gateway module:
@@ -43,5 +43,6 @@ possible.
 * [Developer Resources](https://developers.whmcs.com/)
 * [Hook Documentation](https://developers.whmcs.com/hooks/)
 * [API Documentation](https://developers.whmcs.com/api/)
+* [Paycom API Documentation](https://help.paycom.uz/)
 
-[WHMCS Limited](https://www.whmcs.com)
+[Virtual Clouds LLC](https://www.vcloud.com)

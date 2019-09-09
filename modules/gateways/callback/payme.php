@@ -1,26 +1,32 @@
 <?php
 /**
- * WHMCS Sample Payment Callback File
+ * Payme Callback File
  *
- * This sample file demonstrates how a payment gateway callback should be
- * handled within WHMCS.
+ * This sample file demonstrates how a merchant gateway module supporting
+ * 3D Secure Authentication, Captures and Refunds can be structured.
  *
- * It demonstrates verifying that the payment gateway module is active,
- * validating an Invoice ID, checking for the existence of a Transaction ID,
- * Logging the Transaction for debugging and Adding Payment to an Invoice.
+ * If your merchant gateway does not support 3D Secure Authentication, you can
+ * simply omit that function and the callback file from your own module.
+ *
+ * Within the module itself, all functions must be prefixed with the module
+ * filename, followed by an underscore, and then the function name. For this
+ * example file, the filename is "merchantgateway" and therefore all functions
+ * begin "payme_".
  *
  * For more information, please refer to the online documentation.
  *
- * @see https://developers.whmcs.com/payment-gateways/callbacks/
+ * @see https://developers.whmcs.com/payment-gateways/
+ * @see https://help.paycom.uz/
  *
- * @copyright Copyright (c) WHMCS Limited 2017
- * @license http://www.whmcs.com/license/ WHMCS Eula
+ * @copyright Virtual Clouds LlC (c) Reserved 2019
+ * @author Avazbek Niyazov
  */
 
 // Require libraries needed for gateway module functions.
 require_once __DIR__ . '/../../../init.php';
 require_once __DIR__ . '/../../../includes/gatewayfunctions.php';
 require_once __DIR__ . '/../../../includes/invoicefunctions.php';
+require_once __DIR__ . '/../../../includes/Payme.php';
 
 // Detect module name from filename.
 $gatewayModuleName = basename(__FILE__, '.php');
@@ -33,9 +39,12 @@ if (!$gatewayParams['type']) {
     die("Module Not Activated");
 }
 
+$payme = new Payme($gatewayParams);
+
+$payme->callback();
 // Retrieve data returned in payment gateway callback
 // Varies per payment gateway
-$success = $_POST["x_status"];
+/*$success = $_POST["x_status"];
 $invoiceId = $_POST["x_invoice_id"];
 $transactionId = $_POST["x_trans_id"];
 $paymentAmount = $_POST["x_amount"];
@@ -51,7 +60,7 @@ $transactionStatus = $success ? 'Success' : 'Failure';
  * originated from them. In the case of our example here, this is achieved by
  * way of a shared secret which is used to build and compare a hash.
  */
-$secretKey = $gatewayParams['secretKey'];
+/*$secretKey = $gatewayParams['secretKey'];
 if ($hash != md5($invoiceId . $transactionId . $paymentAmount . $secretKey)) {
     $transactionStatus = 'Hash Verification Failure';
     $success = false;
@@ -70,7 +79,7 @@ if ($hash != md5($invoiceId . $transactionId . $paymentAmount . $secretKey)) {
  * @param int $invoiceId Invoice ID
  * @param string $gatewayName Gateway Name
  */
-$invoiceId = checkCbInvoiceID($invoiceId, $gatewayParams['name']);
+//$invoiceId = checkCbInvoiceID($invoiceId, $gatewayParams['name']);
 
 /**
  * Check Callback Transaction ID.
@@ -82,7 +91,7 @@ $invoiceId = checkCbInvoiceID($invoiceId, $gatewayParams['name']);
  *
  * @param string $transactionId Unique Transaction ID
  */
-checkCbTransID($transactionId);
+//checkCbTransID($transactionId);
 
 /**
  * Log Transaction.
@@ -96,9 +105,9 @@ checkCbTransID($transactionId);
  * @param string|array $debugData    Data to log
  * @param string $transactionStatus  Status
  */
-logTransaction($gatewayParams['name'], $_POST, $transactionStatus);
+//logTransaction($gatewayParams['name'], $_POST, $transactionStatus);
 
-if ($success) {
+//if ($success) {
 
     /**
      * Add Invoice Payment.
@@ -111,7 +120,7 @@ if ($success) {
      * @param float $paymentFee      Payment fee (optional)
      * @param string $gatewayModule  Gateway module name
      */
-    addInvoicePayment(
+    /*addInvoicePayment(
         $invoiceId,
         $transactionId,
         $paymentAmount,
@@ -119,4 +128,5 @@ if ($success) {
         $gatewayModuleName
     );
 
-}
+}*/
+

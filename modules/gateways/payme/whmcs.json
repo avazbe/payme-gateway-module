@@ -1,0 +1,30 @@
+{
+  "schema": "1.0",
+  "type": "whmcs-gateways",
+  "name": "payme",
+  "license": "proprietary",
+  "category": "payments",
+  "description": {
+    "name": "Payme.uz",
+    "tagline": "Payme.uz is the payment gateway.",
+    "long": "Payme.uz is the fast, easy, secure way to accept credit cards. Millions of users know and trust the Payme payment solution online.",
+    "features": [
+      "Automatic recurring subscription billing",
+      "Subscription management automation & one-click refunds",
+      "3 Integration Methods to choose from: Payme Website Payments Standard."
+    ]
+  },
+  "logo": {
+    "filename": "logo.png"
+  },
+  "support": {
+    "homepage": "https:\/\/www.payme.com\/",
+    "docs_url": "https:\/\/docs.whmcs.com\/Payme"
+  },
+  "authors": [
+    {
+      "name": "PAYME",
+      "homepage": "https:\/\/www.payme.uz\/"
+    }
+  ]
+}
